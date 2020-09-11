@@ -64,29 +64,32 @@ namespace Student
     }
     class Aspirant:Student
     {
-        private string diss;
-        public static int indexAsp=0;
+        private string diss;        
         private Aspirant[] dataAsp;
         public Aspirant() { }
+        public Aspirant(int n) 
+        {
+            dataAsp = new Aspirant[n];
+        }
         public Aspirant(string name,string lastName,int kurs,int zachet,string diss,int n)
             :base(name,lastName,kurs,zachet,n)
         {
-
+            dataAsp = new Aspirant[n];
         }
         public string Diss
         {
             get { return diss; }
             set { diss=value;}
         }
-        public new Aspirant this[int indexAsp]
+        public new Aspirant this[int index]
         {
             get
             {
-                return dataAsp[indexAsp];
+                return dataAsp[index];
             }
             set
             {
-                dataAsp[indexAsp] = value;
+                dataAsp[index] = value;
             }
         }
         public new void PrintInfo()

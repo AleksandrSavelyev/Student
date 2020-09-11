@@ -6,9 +6,11 @@ namespace Student
     {
         static void Main(string[] args)
         {
-            int n = 7;
+            int n = 10000;
             Student first = new Student(n);
             int w = 0;
+            Aspirant firstAsp = new Aspirant(n);
+            int z = 0;
 
             for (; ; )
             {
@@ -20,18 +22,19 @@ namespace Student
                 string myMenyu = Console.ReadLine();                
                 switch (myMenyu)
                 {
-                    case "1": first = AddStu(first, n, w);
+                    case "1": first = AddStu(first, w);
                         w++;
                         break;
-                    case "2":
-                        break;
+                    case "2":firstAsp = AddAsp(firstAsp, z);
+                        z++;
+                        break;                        
                     case "3":PrintInfoStu(first);
+                        break;
+                    case "4":PrintInfoAsp(firstAsp);
                         break;
                     default:
                         break;
-                }
-
-                
+                }                
             }
         }
         static bool CheckNum(string a)
@@ -95,10 +98,8 @@ namespace Student
                     Console.Write("номер зачетной книжки дожен быть не меньше и не длиннее 8символов");
             }
         }        
-        public static Student AddStu(Student first, int n, int i)
-        {
-            
-            Console.WriteLine(i);
+        public static Student AddStu(Student first, int i)
+        {    
             for (; ; )
             {
                 
@@ -112,12 +113,12 @@ namespace Student
                 Console.Write("введите номер зачетной книжки:\t");
                 first[i].Zachet = InNum();
                
-                Console.Write("чтобы добавить ещё 1 студента нажмите 1:\t");
-                Console.Write("чтобы выйти в меню нажмите любую цифру:\t");
+                Console.WriteLine("чтобы добавить ещё 1 студента нажмите 1:\t");
+                Console.WriteLine("чтобы выйти в меню нажмите любую цифру:\t");
                 int a = InNum();
                 if (a == 1)
                 {
-                    AddStu(first, n, i+1);
+                    AddStu(first, i+1);
                 }
                 else
                     break;
@@ -125,26 +126,44 @@ namespace Student
             return first;
             
         }
-        static void AddAsp()
+        static Aspirant AddAsp(Aspirant firstAsp, int i)
         {
-            Aspirant firstAspirant = new Aspirant();
-            Console.Write("введите имя аспиранта:\t");
-            firstAspirant.Name = InStr();
-            Console.Write("введите фамилию аспирантиа:\t");
-            firstAspirant.LastName = InStr();
-            Console.Write("введите курс обучения:\t");
-            firstAspirant.Kurs = InNum();
-            Console.Write("введите номер зачетной книжки:\t");
-            firstAspirant.Zachet = InNum();
-            Console.Write("введите название дисертации:\t");
-            firstAspirant.Diss = InStr();
-            firstAspirant[Aspirant.indexAsp] = new Aspirant();
+            Console.WriteLine(i);
+            for (; ; )
+            {
+                firstAsp[i] = new Aspirant();
+                Console.Write("введите имя аспиранта:\t");
+                firstAsp[i].Name = InStr();
+                Console.Write("введите фамилию аспирантиа:\t");
+                firstAsp[i].LastName = InStr();
+                Console.Write("введите курс обучения:\t");
+                firstAsp[i].Kurs = InNum();
+                Console.Write("введите номер зачетной книжки:\t");
+                firstAsp[i].Zachet = InNum();
+                Console.Write("введите название дисертации:\t");
+                firstAsp[i].Diss = InStr();
+
+                Console.WriteLine("нажмите 1 чтобы добавить ещё аспиранта");
+                Console.WriteLine("Нажмите любую цифру чтобы выйти");
+                int a = InNum();
+                if (a == 1)
+                    AddAsp(firstAsp, i + 1);
+                else
+                    break;                
+            }
+            return firstAsp;
         }
         static void PrintInfoStu(Student first)
         {
             Console.Write("введите номер студента для вывода информации:\t");
             int a = InNum();
             first[a].PrintInfo();
+        }
+        static void PrintInfoAsp(Aspirant firstAsp)
+        {
+            Console.Write("введите номер аспиранта для вывода информации");
+            int a = InNum();
+            firstAsp[a].PrintInfo();
         }
     }
 }
