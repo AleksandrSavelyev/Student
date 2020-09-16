@@ -15,9 +15,9 @@ namespace Student
             for (; ; )
             {
                 Console.WriteLine("нажмите 1 чтобы добавить Студента");
-                Console.WriteLine("нажмитье 2 для вывода информации об аспирантах");
-                Console.WriteLine("нажмите 3 для вывода информации о студенте");
-                Console.WriteLine("нажмите 4 для выхода");
+                Console.WriteLine("нажмите 2 чьобы добавить аспиранта");
+                Console.WriteLine("нажмите 3 чтобы узнать информацию о студентах");
+                Console.WriteLine("нажмите 4 чтобы узнать информацию о аспирантах ");
                
                 string myMenyu = Console.ReadLine();                
                 switch (myMenyu)
@@ -28,9 +28,9 @@ namespace Student
                     case "2":firstAsp = AddAsp(firstAsp, z);
                         z++;
                         break;                        
-                    case "3":PrintInfoStu(first);
+                    case "3":PrintInfoStu(first,w);
                         break;
-                    case "4":PrintInfoAsp(firstAsp);
+                    case "4":PrintInfoAsp(firstAsp,z);
                         break;
                     default:
                         break;
@@ -153,17 +153,19 @@ namespace Student
             }
             return firstAsp;
         }
-        static void PrintInfoStu(Student first)
+        static void PrintInfoStu(Student first,int stud)
         {
+            Console.WriteLine($"всего зарегестрированно {stud} студентов");
             Console.Write("введите номер студента для вывода информации:\t");
             int a = InNum();
-            first[a].PrintInfo();
+            first[a]?.PrintInfo();
         }
-        static void PrintInfoAsp(Aspirant firstAsp)
+        static void PrintInfoAsp(Aspirant firstAsp,int asp)
         {
+            Console.WriteLine($"всего зарегестрированно {asp} аспирантов");
             Console.Write("введите номер аспиранта для вывода информации");
             int a = InNum();
-            firstAsp[a].PrintInfo();
+            firstAsp[a]?.PrintInfo();
         }
     }
 }

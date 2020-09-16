@@ -10,8 +10,7 @@ namespace Student
         private string lastName ;
         private int kurs;
         private int zachet;
-        private int n;
-        //public static int index=0;
+        private int n;        
         public Student[] data;
         public Student() { }
         public Student(int n)
@@ -52,11 +51,7 @@ namespace Student
             {
                 data[index] = value;
             }
-        }
-       /* public static void InnIndex()
-        {
-            index += 1;
-        }*/
+        }       
         public virtual void PrintInfo()
         {
             Console.WriteLine($"имя фамилия:{name} {lastName} курс: {kurs} номер зачетной книжки: {zachet}");
